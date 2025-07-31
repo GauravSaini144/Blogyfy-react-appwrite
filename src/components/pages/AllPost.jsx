@@ -30,11 +30,11 @@ function AllPost() {
     },[error, dispatch])
     
   return (<>
-    <div className='w-full py-8 min-h-[100vh]  '>
+    <div className=' py-8 min-h-[100vh]  '>
         
         <div className='text-center mb-6 md:mb-12'> <h1 className='text-3xl'>Recent Blogs</h1></div>
         <Container>
-            <div className='flex flex-wrap gap-3' >
+            <div className=' flex flex-wrap gap-2 justify-center' >
 
                 {
                     !loading && posts.length>0? posts.map((post)=>(

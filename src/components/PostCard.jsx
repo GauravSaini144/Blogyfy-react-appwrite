@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 function PostCard({post}) {
   return (
     <Link to={`/post/${post.$id}`}>
-<div className="ms:w-full  w-[250px] h-full min-h-fit bg-gray-100 rounded-lg shadow-sm hover:shadow-md">
+<div className=" ms:w-full  w-[300px] h-[350px]  min-h-fit bg-gray-100 rounded-lg shadow-sm hover:shadow-md">
         <div className='w-full justify-center mb-4 h-2/3 overflow-hidden rounded-tr-xl rounded-tl-xl border-2'>
             <img  src={service.filePreview(post.featuredImage)}  alt={post.title} 
             className='  w-full  h-full  object-cover hover:scale-105 transition-transform duration-200  '

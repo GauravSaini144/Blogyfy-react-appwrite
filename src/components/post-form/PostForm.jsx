@@ -77,16 +77,7 @@ function PostForm({post}) {
         }
     }  
 
-    const slugTransform = useCallback((value)=>{
- 
-        if(value && typeof value === 'string'){
-            const slug=value.trim().toLowerCase().replace(/ /g,'-');
-            setValue('slug', slug);
-            return slug;
-        }
-        return '';
-
-    },[]);
+   
 
  
 

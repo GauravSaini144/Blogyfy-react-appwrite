@@ -3,7 +3,7 @@ import Blogify from "../assets/Blogify.png"
 function Logo() {
   return (
     <div>
-      <img className='w-[100px]' src={Blogify} alt="Blogify" />
+      <img className='w-[100px] outline-none' src={Blogify} alt="Blogify" />
     </div>
   )
 }
