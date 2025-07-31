@@ -16,12 +16,12 @@ export class Service{
 
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createPost({title, content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
+                ID.unique(),
                 {
                     title, 
                     content,
@@ -36,12 +36,12 @@ export class Service{
         }
     }
 
-    async updatePost(slug, {title, content, featuredImage, status }){
+    async updatePost(id, {title, content, featuredImage, status }){
         try {
-             await this.databases.updateDocument(
+           return  await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
+                id,
 
                 {
                     title,
@@ -53,19 +53,19 @@ export class Service{
 
             )
 
-            return true;
+            
         } catch (error) {
             console.log("Appwrite service :: updatePost::error", error);
             return false;
         }
     }
 
-    async deletePost(slug){
+    async deletePost(id){
         try {
              await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug
+                id
             )
             return true;
         } catch (error) {

@@ -4,16 +4,19 @@ import PostForm from '../post-form/PostForm'
 import { useParams, useNavigate } from 'react-router-dom'
 import service from '../../appwrite/config';
 import Button from '../Button';
+import Loader from '../Loader';
 function EditPost() {
     const navigate=useNavigate();
     const [post, setPost]=useState(null);
     const {slug}=useParams();
-
-    useEffect(()=>{
+    const [loading, setLoading]=useState(true);
+    useEffect(()=>{ 
+        
         if(slug){
             service.getPost(slug).then((post)=>{
                 if(post){
                     setPost(post);
+                    setLoading(false);
                 }
                 
                 
@@ -22,7 +25,7 @@ function EditPost() {
                     navigate("/");
                 }
     },[slug, navigate])
-  return  post?(<div>
+  return <> { loading?<div className='h-[100vh]'><Loader/></div>: <>{post?(<div>
             <Container>
                 <PostForm post={post}/>
             </Container>
@@ -31,8 +34,8 @@ function EditPost() {
                 <h1>Something Went Wrong</h1>
                 <Button onClick={()=>navigate("/")} >Go to Home</Button>
             </div>
-        )
-    
+        )}</>}
+ </>   
   
 }
 

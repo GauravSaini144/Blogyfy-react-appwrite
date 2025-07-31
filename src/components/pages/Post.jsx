@@ -5,16 +5,19 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import Button from '../Button'
 import { useSelector } from 'react-redux'
 import DOMPurify from "dompurify"
+import Loader from '../Loader'
 function Post() {
     const [post, setPost]=useState(null);
     const {slug} = useParams();
     const userData=useSelector((state)=>state.auth.userData);
     const navigate=useNavigate();
+    const [loading, setLoading]=useState(true);
     useEffect(()=>{
         if(slug){
             service.getPost(slug).then((post)=>{
                 if(post){
                     setPost(post);
+                    setLoading(false);
                 }else{
             navigate("/");
         }
@@ -26,19 +29,20 @@ function Post() {
         }
     },[slug, navigate])
 
-    const isAuther=post && userData ? post.userId === userData.$id :false;
+    const isAuther=post && userData ? post.userId === userData.userData.$id :false;
 
     const deletePost=()=>{
         service.deletePost(post.$id).then((status)=>{
             if(status){
                 service.deleteFile(post.featuredImage);
-                navigate("/");
+                navigate("/all-post");
             }
         })
     }
   return (
-    <>
-    {
+    <>{
+    loading?<Loader/>:<>
+    { 
         post?<div className='py-8 px-2'>
 
             <Container>
@@ -71,8 +75,8 @@ function Post() {
 
             </Container>
         </div>:null
-    }
-    </>
+    }</>
+}</>
   )
 }
 

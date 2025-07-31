@@ -12,12 +12,10 @@ import Loader from '../Loader'
 
 function PostForm({post}) {
     const [loading, setLoading]=useState(false);
-    // console.log("FILE PREVIEW ::::: ", service.filePreview(post.featuredImage));
-    console.log(post);
-    const {register, handleSubmit, watch, setValue, control, getValues } =useForm({
+    
+    const {register, handleSubmit,  setValue, control, getValues } =useForm({
         defaultValues:{
             title:post?.title || '',
-            slug:post?.slug || '',
             content:post?.content || '',
             status:post?.status || 'active',
 
@@ -48,7 +46,11 @@ function PostForm({post}) {
          })
          if(dbPost){
             setLoading(false);
-            navigate(`/post/${dbPost.$id}`);
+            
+            
+                            navigate(`/post/${dbPost.$id}`);
+
+            
          }
         }
         else{
@@ -86,22 +88,12 @@ function PostForm({post}) {
 
     },[]);
 
-    useEffect(()=>{
-
-        const subscription = watch((value,{name})=>{
-            if(name==="title"){
-                setValue('slug', slugTransform(value.title, {shouldValidate:true}));
-            }
-        })
-
-        return(()=>subscription.unsubscribe());
-
-    },[watch, slugTransform, setValue]);
+ 
 
 
   return (
     <>
-    { loading?<Loader/>:<> 
+    { loading?<div className='h-[100vh]'><Loader/></div>:<> 
         <div className='text-center my-6'> <h1 className='text-3xl'>{post?"Edit Blog":"Post a Blog"}</h1></div>
     <form onSubmit={handleSubmit(submit)} className='flex flex-wrap'>
 
@@ -116,21 +108,7 @@ function PostForm({post}) {
         })}
        />
 
-       <Input 
-       label="Slug: "
-       placeholder="Slug"
-       className="mb-4"
-       {...register("slug",{
-        required:true,
-
-       })}
-
-       onInput={(e)=>{
-        setValue("slug", slugTransform(e.currentTarget.value), {
-            shouldValidate:true
-        });
-       }}
-       />
+       
 
        <RTE 
         label="Content: " name="content"
