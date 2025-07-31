@@ -47,7 +47,7 @@ function Post() {
 
             <Container>
                 <div className='w-full flex justify-center mb-4 relative border rounded-xl p-2 bg-gray-50'>
-                    <img src={service.filePreview(post.featuredImage)} alt={post.title} className='rounded-xl h-[400px] ' />
+                    <img src={service.filePreview(post.featuredImage)} alt={post.title} className='rounded-xl h-[400px] ' loading='lazy' />
                     {
                         isAuther &&(
                             <div className='absolute right-6 top-6'>
