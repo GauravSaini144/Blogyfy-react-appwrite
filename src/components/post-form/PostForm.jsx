@@ -61,7 +61,7 @@ function PostForm({post}) {
                 data.featuredImage=fileId;
               const dbPost = await service.createPost({
                     ...data,
-                    userId:userData.$id,
+                    userId:userData.userData.$id,
                     
                 })
 
