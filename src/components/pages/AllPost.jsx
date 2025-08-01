@@ -6,10 +6,12 @@ import Container from '../container/Container'
 import Skeleton from "../Skeleton";
 import {useDispatch, useSelector} from "react-redux"
 import { getAllPosts, clearErrorMessage } from '../../features/postReducer'
+import { Query } from 'appwrite'
 function AllPost() {
     const [posts, setPosts]=useState([]);
     const dispatch=useDispatch();
     const {loading, allPosts, error} = useSelector((state)=>state.posts);
+    
     useEffect(()=>{
         dispatch(getAllPosts());
     },[dispatch])

@@ -29,7 +29,7 @@ function Post() {
         }
     },[slug, navigate])
 
-    const isAuther=post && userData ? post.userId === userData.userData.$id :false;
+    const isAuther=post && userData ? post.userId === userData.$id :false;
 
     const deletePost=()=>{
         service.deletePost(post.$id).then((status)=>{
@@ -64,7 +64,7 @@ function Post() {
                     }
                 </div>
                 <div className='w-full mb-6'>
-
+                    <h1 className='mb-2'>Posted by: <span className='font-semibold '>{post.userName}</span></h1>
                     <h1 className='text-2xl font-bold'>{post.title}</h1>
 
                 </div>

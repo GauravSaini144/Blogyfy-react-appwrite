@@ -16,7 +16,7 @@ export class Service{
 
     }
 
-    async createPost({title, content, featuredImage, status, userId}){
+    async createPost({title, content, featuredImage, status, userId, userName}){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -28,6 +28,7 @@ export class Service{
                     featuredImage,
                     status,
                     userId,
+                    userName
                     
                 }
             )
@@ -36,7 +37,7 @@ export class Service{
         }
     }
 
-    async updatePost(id, {title, content, featuredImage, status }){
+    async updatePost(id, {title, content, featuredImage, status, userName }){
         try {
            return  await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -48,6 +49,7 @@ export class Service{
                     content,
                     featuredImage,
                     status,
+                    userName,
                 }
 
 
@@ -102,7 +104,8 @@ export class Service{
 
         }
     }
-
+      
+    
     // file upload services ---------->
 
     async uploadFile(file){

@@ -13,6 +13,7 @@ import Post from './components/pages/Post.jsx'
 import AllPost from './components/pages/AllPost.jsx'
 import AddPost from './components/pages/AddPost.jsx'
 import {RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Profile from './components/pages/Profile.jsx'
 
 const router = createBrowserRouter([
   {
@@ -66,7 +67,17 @@ const router = createBrowserRouter([
       {
       path:"/post/:slug",
       element:<Post/>,
+      },
+      {
+        path:"/profile",
+        
+        element:(
+        
+        <Protected authentication>
+        <Profile/>
+        </Protected>),
       }
+
     ]
   }
 ])
